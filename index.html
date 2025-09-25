@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galleri</title>
+  <style>
+    :root{
+      --gap:16px;
+      --bg:#0f1115;
+      --fg:#eaeaea;
+      --muted:#9aa0a6;
+      --card:#171a21;
+      --stroke:#23262d;
+      --thumb-ratio:4/3;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;background:var(--bg);color:var(--fg);
+      font:15px/1.45 system-ui,-apple-system,Segoe UI,Inter,Roboto,sans-serif;
+      display:flex;flex-direction:column;min-height:100vh;
+    }
+    .wrap{max-width:1200px;margin:0 auto;padding:24px 16px}
+    header h1{margin:0;font-size:22px}
+
+    .gallery{display:grid;gap:var(--gap);grid-template-columns:repeat(4,1fr)}
+    @media (max-width:640px){.gallery{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+
+    .card{background:var(--card);border:1px solid var(--stroke);border-radius:16px;overflow:hidden}
+    .open{display:block;width:100%;padding:0;border:0;background:none;cursor:pointer}
+    .thumb{
+      width:100%;aspect-ratio:var(--thumb-ratio);object-fit:cover;display:block;
+      image-rendering:auto;image-rendering:-webkit-optimize-contrast;backface-visibility:hidden;transform:translateZ(0);
+    }
+    figcaption.meta{padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    .no{font:600 11px/1 system-ui;color:var(--muted);letter-spacing:.22px;text-transform:uppercase}
+    .title{font-size:13px}
+
+    dialog{border:none;border-radius:18px;max-width:min(92vw,1200px);padding:0;background:#0b0d11}
+    dialog::backdrop{background:rgba(0,0,0,.85)}
+    .lb-head,.lb-foot{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-color:#1f232b;border-style:solid}
+    .lb-head{border-width:0 0 1px}
+    .lb-foot{border-width:1px 0 0;color:var(--muted);font-size:12px}
+    .lb-img{display:block;max-height:75vh;width:100%;object-fit:contain;background:#0b0d11}
+    .btn{appearance:none;border:1px solid #2b2f37;background:#191c23;color:#eaeaea;border-radius:10px;padding:6px 10px;font:inherit;cursor:pointer}
+
+    .line{border-top:1px solid #1f232b}
+    footer{margin-top:auto;color:var(--muted)}
+    footer .wrap{padding-top:16px;padding-bottom:28px;text-align:center}
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <h1>Galleri</h1>
+  </header>
+
+  <main class="wrap">
+    <div class="gallery" id="gallery">
+      <figure class="card" data-full="01.jpg">
+        <button class="open" type="button" aria-label="Åbn: 01 · Bedste venner">
+          <img class="thumb" src="01.jpg" alt="01. Bedste venner" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">01</span><span class="title">Bedste venner</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7788.jpg">
+        <button class="open" type="button" aria-label="Åbn: 03 · Der var engang">
+          <img class="thumb" src="IMG_7788.jpg" alt="03. Der var engang" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">03</span><span class="title">Der var engang</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7792.jpg">
+        <button class="open" type="button" aria-label="Åbn: 16 · Ud af skyggerne">
+          <img class="thumb" src="IMG_7792.jpg" alt="16. Ud af skyggerne" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">16</span><span class="title">Ud af skyggerne</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7801.jpg">
+        <button class="open" type="button" aria-label="Åbn: 10 · Når lyset falder">
+          <img class="thumb" src="IMG_7801.jpg" alt="10. Når lyset falder" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">10</span><span class="title">Når lyset falder</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7818.jpg">
+        <button class="open" type="button" aria-label="Åbn: 17 · Et særligt sted">
+          <img class="thumb" src="IMG_7818.jpg" alt="17. Et særligt sted" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">17</span><span class="title">Et særligt sted</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7825.jpg">
+        <button class="open" type="button" aria-label="Åbn: 05 · På hovedet">
+          <img class="thumb" src="IMG_7825.jpg" alt="05. På hovedet" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">05</span><span class="title">På hovedet</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7828.jpg">
+        <button class="open" type="button" aria-label="Åbn: 13 · Passion">
+          <img class="thumb" src="IMG_7828.jpg" alt="13. Passion" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">13</span><span class="title">Passion</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7844.jpg">
+        <button class="open" type="button" aria-label="Åbn: 14 · Et ulige antal">
+          <img class="thumb" src="IMG_7844.jpg" alt="14. Et ulige antal" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">14</span><span class="title">Et ulige antal</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7851.jpg">
+        <button class="open" type="button" aria-label="Åbn: 22 · Hvad gik galt">
+          <img class="thumb" src="IMG_7851.jpg" alt="22. Hvad gik galt" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">22</span><span class="title">Hvad gik galt</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7857.jpg">
+        <button class="open" type="button" aria-label="Åbn: 21 · Fredfyldt">
+          <img class="thumb" src="IMG_7857.jpg" alt="21. Fredfyldt" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">21</span><span class="title">Fredfyldt</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7864.jpg">
+        <button class="open" type="button" aria-label="Åbn: 06 · For enden af regnbuen">
+          <img class="thumb" src="IMG_7864.jpg" alt="06. For enden af regnbuen" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">06</span><span class="title">For enden af regnbuen</span></figcaption>
+      </figure>
+
+      <figure class="card" data-full="IMG_7874.jpg">
+        <button class="open" type="button" aria-label="Åbn: 08 · Skræmmende">
+          <img class="thumb" src="IMG_7874.jpg" alt="08. Skræmmende" loading="lazy" decoding="async">
+        </button>
+        <figcaption class="meta"><span class="no">08</span><span class="title">Skræmmende</span></figcaption>
+      </figure>
+    </div>
+  </main>
+
+  <div class="line"></div>
+  <footer>
+    <div class="wrap">Lavet af <strong>Sara Catia</strong></div>
+  </footer>
+
+  <dialog id="lightbox" aria-label="Fuld visning">
+    <div class="lb-head">
+      <strong id="lb-title">Foto</strong>
+      <button class="btn" id="lb-close" type="button">Luk</button>
+    </div>
+    <img id="lb-img" class="lb-img" alt="Stor visning"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAuMBgV7w0mEAAAAASUVORK5CYII=">
+    <div class="lb-foot">
+      <span>Tryk udenfor for at lukke</span>
+      <a id="lb-download" class="btn" href="#" download>Download</a>
+    </div>
+  </dialog>
+
+  <script>
+    const dlg=document.getElementById('lightbox');
+    const lbImg=document.getElementById('lb-img');
+    const lbTitle=document.getElementById('lb-title');
+    const dl=document.getElementById('lb-download');
+
+    document.addEventListener('click',e=>{
+      const btn=e.target.closest('.open'); if(!btn) return;
+      const fig=btn.closest('.card');
+      const src=fig?.dataset.full;
+      const label=fig?.querySelector('.meta')?.innerText.trim()||'Foto';
+      if(!src) return;
+      lbImg.src=src; lbTitle.textContent=label; dl.href=src; dlg.showModal();
+    });
+
+    document.getElementById('lb-close').addEventListener('click',()=>dlg.close());
+    dlg.addEventListener('click',e=>{ if(e.target===dlg) dlg.close(); });
+  </script>
+</body>
+</html>

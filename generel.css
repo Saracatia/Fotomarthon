@@ -1,0 +1,59 @@
+:root{
+  --gap:16px;
+  --bg:#0f1115;
+  --fg:#eaeaea;
+  --muted:#9aa0a6;
+  --card:#171a21;
+  --stroke:#23262d;
+  --thumb-ratio: 4/3;
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font:15px/1.45 system-ui, -apple-system, Segoe UI, Inter, Roboto, sans-serif;
+  display:flex; flex-direction:column; min-height:100vh;
+}
+
+.wrap{ max-width:1200px; margin:0 auto; padding:24px 16px }
+header h1{ margin:0; font-size:22px }
+
+.gallery{
+  display:grid; gap:var(--gap);
+  grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 640px){
+  .gallery{ grid-template-columns: 1fr; max-width:420px; margin:0 auto }
+}
+
+.card{
+  background:var(--card); border:1px solid var(--stroke);
+  border-radius:16px; overflow:hidden; cursor:pointer;
+  transition: box-shadow .2s ease;
+}
+.card:hover{ box-shadow:0 10px 24px rgba(0,0,0,.25) }
+
+.thumb{
+  width:100%; aspect-ratio:var(--thumb-ratio); object-fit:cover; display:block;
+  image-rendering:auto;
+  image-rendering:-webkit-optimize-contrast;
+  backface-visibility:hidden; transform:translateZ(0);
+}
+
+.meta{ padding:10px 12px; display:flex; justify-content:space-between; align-items:center; gap:10px }
+.no{ font:600 11px/1 system-ui; color:var(--muted); letter-spacing:.22px; text-transform:uppercase }
+.title{ font-size:13px }
+
+dialog{ border:none; border-radius:18px; max-width:min(92vw,1200px); padding:0; background:#0b0d11 }
+dialog::backdrop{ background:rgba(0,0,0,.85) }
+.lb-head,.lb-foot{ display:flex; justify-content:space-between; align-items:center; padding:10px 12px; border-color:#1f232b; border-style:solid }
+.lb-head{ border-width:0 0 1px }
+.lb-foot{ border-width:1px 0 0; color:var(--muted); font-size:12px }
+.lb-img{ display:block; max-height:75vh; width:100%; object-fit:contain; background:#0b0d11 }
+.btn{ appearance:none; border:1px solid #2b2f37; background:#191c23; color:#eaeaea; border-radius:10px; padding:6px 10px; font:inherit; cursor:pointer }
+
+.line{ border-top:1px solid #1f232b; }
+footer{ margin-top:auto; color:var(--muted); }
+footer .wrap{ padding-top:16px; padding-bottom:28px; text-align:center; }
